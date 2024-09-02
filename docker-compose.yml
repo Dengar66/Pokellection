@@ -1,0 +1,16 @@
+services:
+  web:
+    container_name: pokellection-app
+    restart: always
+    build: .
+    ports:
+      - 3002:3000
+    environment:
+      - MONGO_URI=mongodb://db:27017/pokellection
+    depends_on:
+      - db
+  db:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
