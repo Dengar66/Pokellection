@@ -5,6 +5,8 @@ services:
     build: .
     ports:
       - 3002:3000
+    networks:
+      - pokellection
     environment:
       - MONGO_URI=mongodb://db:27017/pokellection
     depends_on:
@@ -12,5 +14,9 @@ services:
   db:
     container_name: mongo
     image: mongo
-    ports:
-      - '27017:27017'
+    networks:
+      - pokellection
+
+networks:
+  pokellection:
+    driver: bridge
